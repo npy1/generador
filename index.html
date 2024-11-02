@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Etiquetas Inmetro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="imagen/XBRI.png" alt="XBRI Logo" class="logo">
+            <h1>Generador de Etiquetas Inmetro</h1>
+        </header>
+        <main>
+            <form id="etiquetaForm">
+                <!-- Campo fijo para la marca -->
+                <label for="marca">MARCA</label>
+                <input type="text" id="marca" name="marca" value="XBRI" readonly>
+
+                <!-- Campo de texto para el patrón -->
+                <label for="pattern">PATTERN</label>
+                <input type="text" id="pattern" name="pattern" required>
+
+                <!-- Campo de texto para la medida -->
+                <label for="medida">MEDIDA</label>
+                <input type="text" id="medida" name="medida" required>
+
+                <!-- Menú desplegable para RRC -->
+                <label for="rrc">RRC</label>
+                <select id="rrc" name="rrc" required>
+                    <option value="">-</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                </select>
+
+                <!-- Menú desplegable para WET GRIP -->
+                <label for="wetGrip">WET GRIP</label>
+                <select id="wetGrip" name="wetGrip" required>
+                    <option value="">-</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                </select>
+
+                <!-- Campo de texto para Noise Value con "dB" ya escrito -->
+                <label for="noiseValue">NOISE VALUE</label>
+                <input type="text" id="noiseValue" name="noiseValue" required value="dB">
+
+                <!-- Menú desplegable para Noise Level -->
+                <label for="noiseLevel">NOISE LEVEL</label>
+                <select id="noiseLevel" name="noiseLevel" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
+                <!-- Campo de texto para EAN Code -->
+                <label for="eanCode">EAN CODE</label>
+<input type="text" id="eanCode" name="eanCode" maxlength="13" pattern="\d{13}" required placeholder="Ingrese 13 dígitos">
+
+                <!-- Botones de generar y resetear -->
+                <button type="button" id="generateButton">GENERAR</button>
+                <button type="button" id="resetButton">RESET</button>
+
+                <!-- Campo de texto para EAN Code con validación -->
+
+
+            </form>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Script para que el texto "dB" esté fijo en el campo y no se pueda borrar
+        const noiseValueInput = document.getElementById("noiseValue");
+
+        // Al enfocarse en el campo, coloca el cursor antes del "dB"
+        noiseValueInput.addEventListener("focus", function() {
+            if (noiseValueInput.value === "dB") {
+                noiseValueInput.value = "";
+            }
+        });
+
+        // Al perder el enfoque, si el usuario no escribió nada, vuelve a colocar "dB"
+        noiseValueInput.addEventListener("blur", function() {
+            if (noiseValueInput.value === "") {
+                noiseValueInput.value = "dB";
+            }
+        });
+
+        // Permitir solo escribir antes de "dB" y evitar que se borre el texto "dB"
+        noiseValueInput.addEventListener("input", function() {
+            if (!noiseValueInput.value.endsWith("dB")) {
+                noiseValueInput.value = noiseValueInput.value.replace("dB", "") + "dB";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiqueta Generada</title>
+    <link rel="stylesheet" href="etiqueta.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="label-container" id="labelContainer">
+            <!-- Imagen de la etiqueta como fondo -->
+            <img src="imagen/base.png" alt="Etiqueta Base" class="label-image">
+            
+            <!-- Campos de texto superpuestos en las posiciones específicas -->
+            <div class="info medida" id="infoMedida"></div>
+            <div class="info rrc" id="infoRRC"></div>
+            <div class="info wet-grip" id="infoWetGrip"></div>
+            <div class="info noise-value" id="infoNoiseValue"></div>
+            <div class="info pattern" id="infoPattern"></div>
+
+            <!-- Contenedor del código de barras EAN-13 -->
+            <div class="info ean-code" id="infoEANCode">
+                <svg id="barcode" style="width: 200px; height: 60px;"></svg>
+            </div>
+
+            <!-- Contenedor de la imagen de nivel de ruido para noise level = 1 -->
+            <div class="noise-level-image" id="noiseLevelImageContainer">
+                <img src="imagen/lv1.png" alt="Nivel de Ruido 1" id="noiseLevelImage1">
+            </div>
+
+            <!-- Contenedores de las imágenes adicionales para noise level = 2 y 3 -->
+            <div class="noise-level-image" id="noiseLevelImageContainer2-1">
+                <img src="imagen/lv1.png" alt="Nivel de Ruido 2 Imagen 1" id="noiseLevelImage2-1">
+            </div>
+            <div class="noise-level-image" id="noiseLevelImageContainer2-2">
+                <img src="imagen/lv2.png" alt="Nivel de Ruido 2 Imagen 2" id="noiseLevelImage2-2">
+            </div>
+            <div class="noise-level-image" id="noiseLevelImageContainer3-1">
+                <img src="imagen/lv1.png" alt="Nivel de Ruido 3 Imagen 1" id="noiseLevelImage3-1">
+            </div>
+            <div class="noise-level-image" id="noiseLevelImageContainer3-2">
+                <img src="imagen/lv2.png" alt="Nivel de Ruido 3 Imagen 2" id="noiseLevelImage3-2">
+            </div>
+            <div class="noise-level-image" id="noiseLevelImageContainer3-3">
+                <img src="imagen/lv3.png" alt="Nivel de Ruido 3 Imagen 3" id="noiseLevelImage3-3">
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón para descargar el PDF -->
+    <button id="downloadPdfButton" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">Descargar PDF</button>
+
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Asignar los valores de los parámetros a los elementos correspondientes
+        document.getElementById("infoMedida").textContent = params.get('medida');
+        document.getElementById("infoRRC").textContent = params.get('rrc');
+        document.getElementById("infoWetGrip").textContent = params.get('wetGrip');
+        document.getElementById("infoNoiseValue").textContent = params.get('noiseValue');
+        document.getElementById("infoPattern").textContent = params.get('pattern');
+
+        // Generar el código de barras usando JsBarcode en el contenedor SVG
+        window.onload = function() {
+            const eanCode = params.get('eanCode');
+            if (eanCode && eanCode.length === 13) {
+                JsBarcode("#barcode", eanCode, {
+                    format: "EAN13",
+                    displayValue: true,
+                    fontSize: 20,
+                    textMargin: 1,
+                    width: 2,
+                    height: 65
+                });
+            } else {
+                console.warn("El código EAN-13 no es válido.");
+            }
+        };
+
+        // Mostrar las imágenes correspondientes según el nivel de ruido
+        const noiseLevel = params.get('noiseLevel');
+        if (noiseLevel === "1") {
+            document.getElementById("noiseLevelImageContainer").style.display = "block";
+        } else if (noiseLevel === "2") {
+            document.getElementById("noiseLevelImageContainer2-1").style.display = "block";
+            document.getElementById("noiseLevelImageContainer2-2").style.display = "block";
+        } else if (noiseLevel === "3") {
+            document.getElementById("noiseLevelImageContainer3-1").style.display = "block";
+            document.getElementById("noiseLevelImageContainer3-2").style.display = "block";
+            document.getElementById("noiseLevelImageContainer3-3").style.display = "block";
+        }
+
+        // Función para descargar la etiqueta como PDF en centímetros
+        document.getElementById("downloadPdfButton").addEventListener("click", function() {
+    const element = document.getElementById("labelContainer");
+
+    // Obtén los valores de PATTERN y MEDIDA
+    const pattern = document.getElementById("infoPattern").textContent;
+    const medida = document.getElementById("infoMedida").textContent;
+
+    // Construye el nombre del archivo
+    const fileName = `${pattern}_${medida}.pdf`;
+
+    html2canvas(element, { scale: 6, useCORS: true }).then(canvas => { 
+        const imgData = canvas.toDataURL("image/png");
+
+        const { jsPDF } = window.jspdf;
+        const pdfWidthCm = canvas.width * 0.0264583; // Convierte píxeles a cm (1 px ≈ 0.0264583 cm)
+        const pdfHeightCm = canvas.height * 0.0264583;
+
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "cm",
+            format: [pdfWidthCm, pdfHeightCm]
+        });
+
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidthCm, pdfHeightCm);
+        pdf.save(fileName); // Usa el nombre dinámico para el archivo
+    });
+});
+
+    </script>
+</body>
+</html>

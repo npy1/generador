@@ -1,0 +1,216 @@
+@font-face {
+    font-family: 'Qanelas';
+    src: url('fonts/Qanelas-Regular.woff2') format('woff2'),
+         url('fonts/Qanelas-Regular.woff') format('woff'),
+         url('fonts/Qanelas-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Aplicar la fuente Qanelas al cuerpo del documento o a elementos específicos */
+body {
+    font-family: 'Qanelas', sans-serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #f3f3f3;
+}
+
+.container {
+    position: relative;
+    width: 300px;
+    height: 1068px;
+}
+
+.label-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.label-image {
+    width: 100%;
+    height: auto;
+}
+
+.info {
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+}
+
+.medida {
+    top: 76px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.rrc {
+    top: 150px;
+    left: 50px;
+}
+
+.wet-grip {
+    top: 150px;
+    left: 180px;
+}
+
+.noise-value {
+    position: absolute;
+    top: 374px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    color: #ffffff;
+    padding-left: 115px;
+}
+
+.ean-code {
+    bottom: 80px;
+    left: 50px;
+}
+
+.pattern {
+    position: absolute;
+    top: 48px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Contenedor para la imagen de nivel de ruido para noise level = 1 */
+.noise-level-image {
+    position: absolute;
+    top: 375px;
+    left: 108px;
+    transform: translateX(-1.12px) translateY(2.7px);
+    display: none;
+}
+
+.noise-level-image img {
+    transform: scale(0.95);
+    margin-top: -1px;
+    margin-left: 2px;
+    width: 13px;
+}
+
+/* Posiciones para las imágenes adicionales de noise level = 2 */
+#noiseLevelImageContainer2-1 {
+    position: absolute;
+    top: 375px;
+    left: 108px;
+    transform: translateX(-1.12px) translateY(2.7px);
+    display: none;
+}
+
+#noiseLevelImageContainer2-2 {
+    position: absolute;
+    top: 366px;
+    left: 115px;
+    transform: translateX(-1.12px) translateY(2.7px);
+    display: none;
+}
+
+/* Ajuste de tamaño individual para cada imagen */
+#noiseLevelImage1 {
+    width: 13px; /* Tamaño de la primera imagen */
+    height: auto;
+}
+
+#noiseLevelImage2-1 {
+    width: 13px; /* Tamaño personalizado para la segunda imagen */
+    height: auto;
+}
+
+#noiseLevelImage2-2 {
+    width: 16px; /* Tamaño personalizado para la tercera imagen */
+    height: auto;
+}
+
+/* Posiciones y tamaños para las imágenes de noise level = 3 */
+#noiseLevelImageContainer3-1 {
+    position: absolute;
+    top: 375px;
+    left: 108px;
+    transform: translateX(-1.12px) translateY(2.7px);
+    display: none;
+}
+
+#noiseLevelImageContainer3-2 {
+    position: absolute;
+    top: 366px;
+    left: 115px;
+    transform: translateX(-1.12px) translateY(2.7px);
+    display: none;
+}
+
+#noiseLevelImageContainer3-3 {
+    position: absolute;
+    top: 358px;
+    left: 123px;
+    transform: translateX(-1.7px) translateY(2.3px);
+    display: none;
+}
+
+/* Tamaños individuales para cada imagen de noise level = 3 */
+#noiseLevelImage3-1 {
+    width: 13px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+#noiseLevelImage3-2 {
+    width: 16px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+#noiseLevelImage3-3 {
+    width: 20px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+.barcode {
+    position: absolute;
+    bottom: 50px; /* Ajusta esta distancia desde el borde inferior */
+    left: 100px;   /* Ajusta esta distancia desde el borde izquierdo */
+    width: 180px; /* Ajusta el ancho del código de barras */
+    height: auto; /* Permite que la altura se ajuste proporcionalmente */
+}
+
+/* Ajuste para el contenedor del código de barras */
+.info.ean-code {
+    position: absolute;
+    bottom: 20px; /* Ajusta la distancia desde el borde inferior */
+    top: 557px;
+    left: 90px;   /* Ajusta la distancia desde el borde izquierdo */
+    width: 100px; /* Ajusta el ancho del código de barras */
+    height: auto; /* Permite que la altura se ajuste proporcionalmente */
+}
+
+/* Ajuste específico para el SVG del código de barras */
+#barcode {
+    width: 120%;  /* Para que se adapte al ancho del contenedor */
+    height: 100px; /* Ajusta la altura del código de barras */
+}
+
+#barcode text {
+    letter-spacing: 0;  /* Ajusta este valor para reducir la separación entre los números */
+}

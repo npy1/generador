@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiqueta Generada</title>
+    <link rel="stylesheet" href="etiqueta.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="label-container">
+            <!-- Imagen de la etiqueta como fondo -->
+            <img src="imagen/base.png" alt="Etiqueta Base" class="label-image">
+            
+            <!-- Campos de texto superpuestos en las posiciones específicas -->
+            <div class="info medida" id="infoMedida"></div>
+            <div class="info rrc" id="infoRRC"></div>
+            <div class="info wet-grip" id="infoWetGrip"></div>
+            <div class="info noise-value" id="infoNoiseValue"></div>
+            <div class="info pattern" id="infoPattern"></div>
+
+            <!-- Contenedor del código de barras EAN-13 -->
+            <div class="info ean-code" id="infoEANCode">
+                <svg id="barcode" style="width: 200px; height: 60px;"></svg>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Asignar los valores de los parámetros a los elementos correspondientes
+        document.getElementById("infoMedida").textContent = params.get('medida');
+        document.getElementById("infoRRC").textContent = params.get('rrc');
+        document.getElementById("infoWetGrip").textContent = params.get('wetGrip');
+        document.getElementById("infoNoiseValue").textContent = params.get('noiseValue');
+        document.getElementById("infoPattern").textContent = params.get('pattern');
+
+        // Generar el código de barras usando JsBarcode en el contenedor SVG
+        window.onload = function() {
+            const eanCode = params.get('eanCode');
+            console.log("EAN Code:", eanCode); // Depuración: Verificar el código EAN
+
+            if (eanCode && eanCode.length === 13) {
+                JsBarcode("#barcode", eanCode, {
+                    format: "EAN13",
+                    displayValue: true,
+                    fontSize: 16,
+                    textMargin: 5,
+                    width: 2,
+                    height: 60
+                });
+                console.log("Código de barras generado"); // Confirmar que el código de barras se genera
+            } else {
+                console.warn("El código EAN-13 no es válido o está vacío.");
+            }
+        };
+    </script>
+</body>
+</html>
