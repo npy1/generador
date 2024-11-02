@@ -218,131 +218,142 @@ body {
 /* Contenedor para la imagen según el valor de RRC */
 .rrc-image-container {
     position: absolute;
-    top: 200px; /* Ajusta según sea necesario */
-    left: 150px; /* Ajusta según sea necesario */
-    width: 50px; /* Ajusta el ancho de la imagen */
-    height: auto;
+    top: 155px; /* Ajusta la posición base según sea necesario */
+    left: 50px;
 }
 
-.rrc-image-container img {
-    width: 100%;
-    height: auto;
-    display: none; /* Se controlará la visibilidad en JavaScript */
-}
-
-/* Contenedor para las imágenes de RRC */
-.rrc-image-container {
+/* Ajustes específicos para cada valor de RRC con tamaño y posición personalizados */
+#rrcImageA {
     position: absolute;
-    top: 150px; /* Ajusta según la posición deseada */
-    left: 50px; /* Ajusta según la posición deseada */
-    width: 28px; /* Ajusta el ancho del contenedor */
-    height: 20px; /* Ajusta la altura del contenedor */
+    top: 43px; /* Ajusta la posición específica */
+    left: 73px;
+    width: 28px; /* Ajusta el ancho específico */
+    height: 20px; /* Ajusta la altura específica */
+    display: block; /* Asegúrate de que esté visible */
 }
 
-/* Estilos generales para todas las imágenes de RRC */
-.rrc-image-container img {
+#rrcImageB {
     position: absolute;
-    width: 100%; /* Ajusta el tamaño de la imagen para ocupar todo el contenedor */
-    height: 100%; /* Ajusta la altura de la imagen para ocupar todo el contenedor */
-    display: none; /* Oculta todas las imágenes por defecto */
-}
-
-/* Ajustes específicos para cada valor */
-#rrcImageA { /* Imagen para RRC A */
-    top: 48PX;
+    top: 67px;
     left: 75px;
+    width: 30px; /* Ajusta el ancho específico */
+    height: 22px; /* Ajusta la altura específica */
+    display: block;
 }
 
-#rrcImageB { /* Imagen para RRC B */
-    top: 67PX;
+#rrcImageC {
+    position: absolute;
+    top: 86px;
     left: 75px;
+    width: 32px;
+    height: 24px;
+    display: block;
 }
 
-#rrcImageC { /* Imagen para RRC C */
-    top: 86PX;
+#rrcImageD {
+    position: absolute;
+    top: 106px;
     left: 75px;
+    width: 34px;
+    height: 26px;
+    display: block;
 }
 
-#rrcImageD { /* Imagen para RRC D */
-    top: 106PX;
+#rrcImageE {
+    position: absolute;
+    top: 125px;
     left: 75px;
+    width: 36px;
+    height: 28px;
+    display: block;
 }
 
-#rrcImageE { /* Imagen para RRC E */
-    top: 125PX;
+#rrcImageF {
+    position: absolute;
+    top: 144px;
     left: 75px;
+    width: 38px;
+    height: 30px;
+    display: block;
 }
 
-#rrcImageF { /* Imagen para RRC F */
-    top: 144PX;
+#rrcImageG {
+    position: absolute;
+    top: 163px;
     left: 75px;
+    width: 40px;
+    height: 32px;
+    display: block;
 }
 
-#rrcImageG { /* Imagen para RRC G */
-    top: 163PX;
-    left: 75px;
-}
-
-/* Estilos para las imágenes de Wet Grip */
+/* Contenedor para las imágenes de Wet Grip */
 .wetgrip-image-container {
     position: absolute;
-    top: 150px; /* Ajusta la posición según sea necesario */
-    left: 175px; /* Ajusta la posición según sea necesario */
+    top: 150px; /* Ajusta según sea necesario */
+    left: 180px;
 }
 
-.wetgrip-image-container img {
-    width: 28px; /* Ajusta el tamaño según sea necesario */
-    height: auto;
-    display: none; /* Oculto por defecto; se mostrará según el valor de Wet Grip */
-}
-
-/* Estilos individuales para cada valor de Wet Grip */
+/* Estilos específicos para cada valor de Wet Grip con tamaño y posición personalizados */
 #wetGripImageA {
     position: absolute;
-    top: 48px;
-    left: 39px;
-    display: none;
+    top: 48px; /* Ajusta la posición específica */
+    left: 38px;
+    width: 28px; /* Ajusta el ancho específico */
+    height: 20px; /* Ajusta la altura específica */
+    display: block; /* Asegúrate de que esté visible */
 }
 
 #wetGripImageB {
     position: absolute;
     top: 67px;
     left: 39px;
-    display: none;
+    width: 30px;
+    height: 22px;
+    display: block;
 }
 
 #wetGripImageC {
     position: absolute;
     top: 86px;
     left: 39px;
-    display: none;
+    width: 32px;
+    height: 24px;
+    display: block;
 }
 
 #wetGripImageD {
     position: absolute;
     top: 106px;
     left: 39px;
-    display: none;
+    width: 34px;
+    height: 26px;
+    display: block;
 }
 
 #wetGripImageE {
     position: absolute;
     top: 125px;
     left: 39px;
-    display: none;
+    width: 36px;
+    height: 28px;
+    display: block;
 }
 
 #wetGripImageF {
     position: absolute;
     top: 144px;
     left: 39px;
-    display: none;
+    width: 38px;
+    height: 30px;
+    display: block;
 }
 
 #wetGripImageG {
     position: absolute;
     top: 164px;
     left: 39px;
-    transform: translate(0px, -0.5px); /* Ajuste fino */
-    display: none;
+    width: 40px;
+    height: 32px;
+    transform: translate(0, -0.5px); /* Ajuste fino */
+    display: block;
 }
