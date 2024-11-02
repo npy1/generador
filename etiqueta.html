@@ -76,6 +76,9 @@
 
     <!-- Botón para descargar el PDF -->
     <button id="downloadPdfButton" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">Descargar PDF</button>
+    <!-- Botón para volver a la página principal -->
+<button id="backToHomeButton" style="margin-top: 10px; padding: 10px 20px; font-size: 16px;">Volver a la página principal</button>
+
 
     <script>
         // Obtener los parámetros de la URL
@@ -146,34 +149,42 @@
             document.getElementById("noiseLevelImageContainer3-3").style.display = "block";
         }
 
+        // Función para redirigir a la página principal
+document.getElementById("backToHomeButton").addEventListener("click", function() {
+    window.location.href = "index.html";
+});
+
         // Función para descargar la etiqueta como PDF en centímetros
         document.getElementById("downloadPdfButton").addEventListener("click", function() {
-            const element = document.getElementById("labelContainer");
+    const element = document.getElementById("labelContainer");
 
-            // Obtén los valores de PATTERN y MEDIDA
-            const pattern = document.getElementById("infoPattern").textContent;
-            const medida = document.getElementById("infoMedida").textContent;
+    // Obtén los valores de PATTERN y MEDIDA
+    const pattern = document.getElementById("infoPattern").textContent;
+    const medida = document.getElementById("infoMedida").textContent;
 
-            // Construye el nombre del archivo
-            const fileName = `${pattern}_${medida}.pdf`;
+    // Construye el nombre del archivo
+    const fileName = `${pattern}_${medida}.pdf`;
 
-            html2canvas(element, { scale: 6, useCORS: true }).then(canvas => { 
-                const imgData = canvas.toDataURL("image/png");
+    html2canvas(element, { scale: 6, useCORS: true }).then(canvas => { 
+        const imgData = canvas.toDataURL("image/png");
 
-                const { jsPDF } = window.jspdf;
-                const pdfWidthCm = canvas.width * 0.0264583;
-                const pdfHeightCm = canvas.height * 0.0264583;
+        const { jsPDF } = window.jspdf;
 
-                const pdf = new jsPDF({
-                    orientation: "portrait",
-                    unit: "cm",
-                    format: [pdfWidthCm, pdfHeightCm]
-                });
+        // Configura el tamaño del PDF en centímetros (9 cm x 32 cm)
+        const pdfWidthCm = 9;
+        const pdfHeightCm = 32;
 
-                pdf.addImage(imgData, "PNG", 0, 0, pdfWidthCm, pdfHeightCm);
-                pdf.save(fileName);
-            });
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "cm",
+            format: [pdfWidthCm, pdfHeightCm]
         });
+
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidthCm, pdfHeightCm);
+        pdf.save(fileName);
+    });
+});
+
     </script>
 </body>
 </html>

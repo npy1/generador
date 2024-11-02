@@ -356,3 +356,53 @@ body {
     height: 21px; /* Ajusta la altura específica */
     display: block; /* Asegúrate de que esté visible */
 }
+
+#downloadPdfButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* Posicionamiento */
+    position: absolute; /* Usa absolute o fixed para mover el botón */
+    top: 450px; /* Ajusta según la posición vertical deseada */
+    right: 350px; /* Ajusta según la posición horizontal deseada */
+}
+
+#downloadPdfButton:hover {
+    background-color: #45a049;
+}
+
+#downloadPdfButton:active {
+    background-color: #4aaf4d;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
+}
+
+#backToHomeButton {
+    background-color: #2196F3; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 12px 24px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Animación suave para el cambio de color */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+       
+    /* Posicionamiento */
+       position: absolute; /* Usa absolute o fixed para mover el botón */
+       top: 510px; /* Ajusta según la posición vertical deseada */
+       right: 305px; /* Ajusta según la posición horizontal deseada */
+}
+
+#backToHomeButton:hover {
+    background-color: #1976D2; /* Color de fondo al pasar el cursor */
+}
