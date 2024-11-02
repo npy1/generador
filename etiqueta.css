@@ -214,3 +214,135 @@ body {
 #barcode text {
     letter-spacing: 0;  /* Ajusta este valor para reducir la separación entre los números */
 }
+
+/* Contenedor para la imagen según el valor de RRC */
+.rrc-image-container {
+    position: absolute;
+    top: 200px; /* Ajusta según sea necesario */
+    left: 150px; /* Ajusta según sea necesario */
+    width: 50px; /* Ajusta el ancho de la imagen */
+    height: auto;
+}
+
+.rrc-image-container img {
+    width: 100%;
+    height: auto;
+    display: none; /* Se controlará la visibilidad en JavaScript */
+}
+
+/* Contenedor para las imágenes de RRC */
+.rrc-image-container {
+    position: absolute;
+    top: 150px; /* Ajusta según la posición deseada */
+    left: 50px; /* Ajusta según la posición deseada */
+    width: 28px; /* Ajusta el ancho del contenedor */
+    height: 20px; /* Ajusta la altura del contenedor */
+}
+
+/* Estilos generales para todas las imágenes de RRC */
+.rrc-image-container img {
+    position: absolute;
+    width: 100%; /* Ajusta el tamaño de la imagen para ocupar todo el contenedor */
+    height: 100%; /* Ajusta la altura de la imagen para ocupar todo el contenedor */
+    display: none; /* Oculta todas las imágenes por defecto */
+}
+
+/* Ajustes específicos para cada valor */
+#rrcImageA { /* Imagen para RRC A */
+    top: 48PX;
+    left: 75px;
+}
+
+#rrcImageB { /* Imagen para RRC B */
+    top: 67PX;
+    left: 75px;
+}
+
+#rrcImageC { /* Imagen para RRC C */
+    top: 86PX;
+    left: 75px;
+}
+
+#rrcImageD { /* Imagen para RRC D */
+    top: 106PX;
+    left: 75px;
+}
+
+#rrcImageE { /* Imagen para RRC E */
+    top: 125PX;
+    left: 75px;
+}
+
+#rrcImageF { /* Imagen para RRC F */
+    top: 144PX;
+    left: 75px;
+}
+
+#rrcImageG { /* Imagen para RRC G */
+    top: 163PX;
+    left: 75px;
+}
+
+/* Estilos para las imágenes de Wet Grip */
+.wetgrip-image-container {
+    position: absolute;
+    top: 150px; /* Ajusta la posición según sea necesario */
+    left: 175px; /* Ajusta la posición según sea necesario */
+}
+
+.wetgrip-image-container img {
+    width: 28px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+    display: none; /* Oculto por defecto; se mostrará según el valor de Wet Grip */
+}
+
+/* Estilos individuales para cada valor de Wet Grip */
+#wetGripImageA {
+    position: absolute;
+    top: 48px;
+    left: 39px;
+    display: none;
+}
+
+#wetGripImageB {
+    position: absolute;
+    top: 67px;
+    left: 39px;
+    display: none;
+}
+
+#wetGripImageC {
+    position: absolute;
+    top: 86px;
+    left: 39px;
+    display: none;
+}
+
+#wetGripImageD {
+    position: absolute;
+    top: 106px;
+    left: 39px;
+    display: none;
+}
+
+#wetGripImageE {
+    position: absolute;
+    top: 125px;
+    left: 39px;
+    display: none;
+}
+
+#wetGripImageF {
+    position: absolute;
+    top: 144px;
+    left: 39px;
+    display: none;
+}
+
+#wetGripImageG {
+    position: absolute;
+    top: 164px;
+    left: 39px;
+    transform: translate(0px, -0.5px); /* Ajuste fino */
+    display: none;
+}

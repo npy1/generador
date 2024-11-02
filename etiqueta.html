@@ -48,6 +48,29 @@
             <div class="noise-level-image" id="noiseLevelImageContainer3-3">
                 <img src="imagen/lv3.png" alt="Nivel de Ruido 3 Imagen 3" id="noiseLevelImage3-3">
             </div>
+
+            <!-- Contenedor de imágenes según el valor de RRC -->
+            <div class="rrc-image-container" id="rrcImageContainer">
+                <!-- Colocaremos las imágenes de RRC aquí -->
+                <img src="imagen/RRC/A.png" alt="RRC A" id="rrcImageA" style="display: none;">
+                <img src="imagen/RRC/B.png" alt="RRC B" id="rrcImageB" style="display: none;">
+                <img src="imagen/RRC/C.png" alt="RRC C" id="rrcImageC" style="display: none;">
+                <img src="imagen/RRC/D.png" alt="RRC D" id="rrcImageD" style="display: none;">
+                <img src="imagen/RRC/E.png" alt="RRC E" id="rrcImageE" style="display: none;">
+                <img src="imagen/RRC/F.png" alt="RRC F" id="rrcImageF" style="display: none;">
+                <img src="imagen/RRC/G.png" alt="RRC G" id="rrcImageG" style="display: none;">
+            </div>
+
+            <!-- Contenedor de imágenes según el valor de Wet Grip -->
+            <div class="wetgrip-image-container" id="wetGripImageContainer">
+                <img src="imagen/WET GRIP/A.png" alt="Wet Grip A" id="wetGripImageA" style="display: none;">
+                <img src="imagen/WET GRIP/B.png" alt="Wet Grip B" id="wetGripImageB" style="display: none;">
+                <img src="imagen/WET GRIP/C.png" alt="Wet Grip C" id="wetGripImageC" style="display: none;">
+                <img src="imagen/WET GRIP/D.png" alt="Wet Grip D" id="wetGripImageD" style="display: none;">
+                <img src="imagen/WET GRIP/E.png" alt="Wet Grip E" id="wetGripImageE" style="display: none;">
+                <img src="imagen/WET GRIP/F.png" alt="Wet Grip F" id="wetGripImageF" style="display: none;">
+                <img src="imagen/WET GRIP/G.png" alt="Wet Grip G" id="wetGripImageG" style="display: none;">
+            </div>
         </div>
     </div>
 
@@ -60,10 +83,8 @@
 
         // Asignar los valores de los parámetros a los elementos correspondientes
         document.getElementById("infoMedida").textContent = params.get('medida');
-        document.getElementById("infoRRC").textContent = params.get('rrc');
-        document.getElementById("infoWetGrip").textContent = params.get('wetGrip');
-        document.getElementById("infoNoiseValue").textContent = params.get('noiseValue');
         document.getElementById("infoPattern").textContent = params.get('pattern');
+        document.getElementById("infoNoiseValue").textContent = params.get('noiseValue');
 
         // Generar el código de barras usando JsBarcode en el contenedor SVG
         window.onload = function() {
@@ -82,6 +103,36 @@
             }
         };
 
+        // Mostrar la imagen correspondiente según el valor de RRC
+        const rrcValue = params.get('rrc');
+        const rrcImages = {
+            A: document.getElementById("rrcImageA"),
+            B: document.getElementById("rrcImageB"),
+            C: document.getElementById("rrcImageC"),
+            D: document.getElementById("rrcImageD"),
+            E: document.getElementById("rrcImageE"),
+            F: document.getElementById("rrcImageF"),
+            G: document.getElementById("rrcImageG"),
+        };
+        if (rrcImages[rrcValue]) {
+            rrcImages[rrcValue].style.display = "block";
+        }
+
+        // Mostrar la imagen correspondiente según el valor de Wet Grip
+        const wetGripValue = params.get('wetGrip');
+        const wetGripImages = {
+            A: document.getElementById("wetGripImageA"),
+            B: document.getElementById("wetGripImageB"),
+            C: document.getElementById("wetGripImageC"),
+            D: document.getElementById("wetGripImageD"),
+            E: document.getElementById("wetGripImageE"),
+            F: document.getElementById("wetGripImageF"),
+            G: document.getElementById("wetGripImageG"),
+        };
+        if (wetGripImages[wetGripValue]) {
+            wetGripImages[wetGripValue].style.display = "block";
+        }
+
         // Mostrar las imágenes correspondientes según el nivel de ruido
         const noiseLevel = params.get('noiseLevel');
         if (noiseLevel === "1") {
@@ -97,33 +148,32 @@
 
         // Función para descargar la etiqueta como PDF en centímetros
         document.getElementById("downloadPdfButton").addEventListener("click", function() {
-    const element = document.getElementById("labelContainer");
+            const element = document.getElementById("labelContainer");
 
-    // Obtén los valores de PATTERN y MEDIDA
-    const pattern = document.getElementById("infoPattern").textContent;
-    const medida = document.getElementById("infoMedida").textContent;
+            // Obtén los valores de PATTERN y MEDIDA
+            const pattern = document.getElementById("infoPattern").textContent;
+            const medida = document.getElementById("infoMedida").textContent;
 
-    // Construye el nombre del archivo
-    const fileName = `${pattern}_${medida}.pdf`;
+            // Construye el nombre del archivo
+            const fileName = `${pattern}_${medida}.pdf`;
 
-    html2canvas(element, { scale: 6, useCORS: true }).then(canvas => { 
-        const imgData = canvas.toDataURL("image/png");
+            html2canvas(element, { scale: 6, useCORS: true }).then(canvas => { 
+                const imgData = canvas.toDataURL("image/png");
 
-        const { jsPDF } = window.jspdf;
-        const pdfWidthCm = canvas.width * 0.0264583; // Convierte píxeles a cm (1 px ≈ 0.0264583 cm)
-        const pdfHeightCm = canvas.height * 0.0264583;
+                const { jsPDF } = window.jspdf;
+                const pdfWidthCm = canvas.width * 0.0264583;
+                const pdfHeightCm = canvas.height * 0.0264583;
 
-        const pdf = new jsPDF({
-            orientation: "portrait",
-            unit: "cm",
-            format: [pdfWidthCm, pdfHeightCm]
+                const pdf = new jsPDF({
+                    orientation: "portrait",
+                    unit: "cm",
+                    format: [pdfWidthCm, pdfHeightCm]
+                });
+
+                pdf.addImage(imgData, "PNG", 0, 0, pdfWidthCm, pdfHeightCm);
+                pdf.save(fileName);
+            });
         });
-
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidthCm, pdfHeightCm);
-        pdf.save(fileName); // Usa el nombre dinámico para el archivo
-    });
-});
-
     </script>
 </body>
 </html>
