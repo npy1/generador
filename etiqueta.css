@@ -266,7 +266,7 @@ body {
 .info.ean-code {
     position: absolute;
     bottom: 20px; /* Ajusta la distancia desde el borde inferior */
-    top: 557px;
+    top: 558px;
     left: 90px;   /* Ajusta la distancia desde el borde izquierdo */
     width: 100px; /* Ajusta el ancho del código de barras */
     height: auto; /* Permite que la altura se ajuste proporcionalmente */
@@ -428,18 +428,18 @@ body {
     background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 1rem 2rem; /* Usa rem para mantener el tamaño consistente */
-    font-size: 1rem; /* Tamaño de fuente relativo */
+    padding: 12px 24px;
+    font-size: 16px;
     font-weight: bold;
-    border-radius: 0.5rem; /* Bordes redondeados en rem */
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    box-shadow: 0px 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
     /* Posicionamiento */
-    position: fixed; /* Mantiene el botón en una posición fija en la ventana */
-    top: 40vh; /* Posición vertical relativa al alto de la ventana */
-    right: 10vw; /* Posición horizontal relativa al ancho de la ventana */
+    position: fixed; /* Usa absolute o fixed para mover el botón */
+    top: 450px; /* Ajusta según la posición vertical deseada */
+    right: 350px; /* Ajusta según la posición horizontal deseada */
 }
 
 #downloadPdfButton:hover {
@@ -448,28 +448,28 @@ body {
 
 #downloadPdfButton:active {
     background-color: #4aaf4d;
-    box-shadow: 0px 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
-    transform: translateY(0.0625rem);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
 }
 
 #backToHomeButton {
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    padding: 1rem 2rem; /* Usa rem para mantener el tamaño consistente */
-    font-size: 1rem; /* Tamaño de fuente relativo */
-    font-weight: bold;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0px 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
-
+    background-color: #2196F3; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 12px 24px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease; /* Animación suave para el cambio de color */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+       
     /* Posicionamiento */
-    position: fixed; /* Mantiene el botón en una posición fija en la ventana */
-    top: 50vh; /* Ajusta según la posición vertical deseada */
-    right: 10vw; /* Ajusta según la posición horizontal deseada */
+       position: fixed; /* Usa absolute o fixed para mover el botón */
+       top: 510px; /* Ajusta según la posición vertical deseada */
+       right: 305px; /* Ajusta según la posición horizontal deseada */
 }
 
 #backToHomeButton:hover {
-    background-color: #1976D2;
+    background-color: #1976D2; /* Color de fondo al pasar el cursor */
 }

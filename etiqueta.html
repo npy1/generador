@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="container">
+        <div class="main-container"></div>
         <div class="label-container" id="labelContainer">
             <!-- Imagen de la etiqueta como fondo -->
             <img src="imagen/base.png" alt="Etiqueta Base" class="label-image">
@@ -74,10 +75,11 @@
         </div>
     </div>
 
-    <!-- Botón para descargar el PDF -->
-    <button id="downloadPdfButton" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">Descargar PDF</button>
-    <!-- Botón para volver a la página principal -->
-<button id="backToHomeButton" style="margin-top: 10px; padding: 10px 20px; font-size: 16px;">Volver a la página principal</button>
+     <!-- Contenedor de botones debajo de la etiqueta -->
+     <div class="button-container">
+        <button id="downloadPdfButton">Descargar PDF</button>
+        <button id="backToHomeButton">Volver a la página principal</button>
+    </div>
 
 
     <script>
