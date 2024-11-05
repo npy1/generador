@@ -14,19 +14,15 @@
         </header>
         <main>
             <form id="etiquetaForm">
-                <!-- Campo fijo para la marca -->
                 <label for="marca">MARCA</label>
                 <input type="text" id="marca" name="marca" value="XBRI" readonly>
 
-                <!-- Campo de texto para el patrón -->
                 <label for="pattern">PATTERN</label>
-                <input type="text" id="pattern" name="pattern" required>
+                <input type="text" id="pattern" name="pattern" required placeholder="Ingrese el Pattern">
 
-                <!-- Campo de texto para la medida -->
                 <label for="medida">MEDIDA</label>
-                <input type="text" id="medida" name="medida" required>
+                <input type="text" id="medida" name="medida" required placeholder="Ingrese la Medida">
 
-                <!-- Menú desplegable para RRC -->
                 <label for="rrc">RRC</label>
                 <select id="rrc" name="rrc" required>
                     <option value="">-</option>
@@ -39,7 +35,6 @@
                     <option value="G">G</option>
                 </select>
 
-                <!-- Menú desplegable para WET GRIP -->
                 <label for="wetGrip">WET GRIP</label>
                 <select id="wetGrip" name="wetGrip" required>
                     <option value="">-</option>
@@ -52,11 +47,9 @@
                     <option value="G">G</option>
                 </select>
 
-                <!-- Campo de texto para Noise Value con "dB" ya escrito -->
                 <label for="noiseValue">NOISE VALUE</label>
-                <input type="text" id="noiseValue" name="noiseValue" required value="dB">
+                <input type="text" id="noiseValue" name="noiseValue" required placeholder="Ingrese el valor de ruido">
 
-                <!-- Menú desplegable para Noise Level -->
                 <label for="noiseLevel">NOISE LEVEL</label>
                 <select id="noiseLevel" name="noiseLevel" required>
                     <option value="0">0</option>
@@ -65,46 +58,65 @@
                     <option value="3">3</option>
                 </select>
 
-                <!-- Campo de texto para EAN Code -->
                 <label for="eanCode">EAN CODE</label>
-<input type="text" id="eanCode" name="eanCode" maxlength="13" pattern="\d{13}" required placeholder="Ingrese 13 dígitos">
+                <input type="text" id="eanCode" name="eanCode" maxlength="13" pattern="\d{13}" required placeholder="Ingrese 13 dígitos">
 
-                <!-- Botones de generar y resetear -->
                 <button type="button" id="generateButton">GENERAR</button>
                 <button type="button" id="resetButton">RESET</button>
-
-                <!-- Campo de texto para EAN Code con validación -->
-
-
             </form>
         </main>
     </div>
 
     <script src="script.js"></script>
     <script>
-        // Script para que el texto "dB" esté fijo en el campo y no se pueda borrar
-        const noiseValueInput = document.getElementById("noiseValue");
-
-        // Al enfocarse en el campo, coloca el cursor antes del "dB"
-        noiseValueInput.addEventListener("focus", function() {
-            if (noiseValueInput.value === "dB") {
-                noiseValueInput.value = "";
-            }
+        document.getElementById("generateButton").addEventListener("click", function() {
+            const formData = {
+                marca: document.getElementById("marca").value,
+                pattern: document.getElementById("pattern").value,
+                medida: document.getElementById("medida").value,
+                rrc: document.getElementById("rrc").value,
+                wetGrip: document.getElementById("wetGrip").value,
+                noiseValue: document.getElementById("noiseValue").value + " dB",
+                noiseLevel: document.getElementById("noiseLevel").value,
+                eanCode: document.getElementById("eanCode").value
+            };
+    
+            localStorage.setItem("formData", JSON.stringify(formData));
+    
+            const url = `etiqueta.html?marca=${encodeURIComponent(formData.marca)}&pattern=${encodeURIComponent(formData.pattern)}&medida=${encodeURIComponent(formData.medida)}&rrc=${encodeURIComponent(formData.rrc)}&wetGrip=${encodeURIComponent(formData.wetGrip)}&noiseValue=${encodeURIComponent(formData.noiseValue)}&noiseLevel=${encodeURIComponent(formData.noiseLevel)}&eanCode=${encodeURIComponent(formData.eanCode)}`;
+            
+            window.location.href = url;
         });
-
-        // Al perder el enfoque, si el usuario no escribió nada, vuelve a colocar "dB"
-        noiseValueInput.addEventListener("blur", function() {
-            if (noiseValueInput.value === "") {
-                noiseValueInput.value = "dB";
-            }
+    
+        document.getElementById("resetButton").addEventListener("click", function() {
+            document.getElementById("etiquetaForm").reset();
+            localStorage.removeItem("formData");
         });
-
-        // Permitir solo escribir antes de "dB" y evitar que se borre el texto "dB"
-        noiseValueInput.addEventListener("input", function() {
-            if (!noiseValueInput.value.endsWith("dB")) {
-                noiseValueInput.value = noiseValueInput.value.replace("dB", "") + "dB";
+    
+        function calculateEAN13CheckDigit(code) {
+            let sum = 0;
+            for (let i = 0; i < 12; i++) {
+                sum += parseInt(code[i]) * (i % 2 === 0 ? 1 : 3);
+            }
+            const checkDigit = (10 - (sum % 10)) % 10;
+            return checkDigit.toString();
+        }
+    
+        // Cargar los datos guardados en localStorage al cargar la página
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedData = JSON.parse(localStorage.getItem("formData"));
+            if (savedData) {
+                document.getElementById("marca").value = savedData.marca;
+                document.getElementById("pattern").value = savedData.pattern;
+                document.getElementById("medida").value = savedData.medida;
+                document.getElementById("rrc").value = savedData.rrc;
+                document.getElementById("wetGrip").value = savedData.wetGrip;
+                document.getElementById("noiseValue").value = savedData.noiseValue.replace(" dB", ""); // Solo muestra el valor sin "dB"
+                document.getElementById("noiseLevel").value = savedData.noiseLevel;
+                document.getElementById("eanCode").value = savedData.eanCode;
             }
         });
     </script>
+    
 </body>
 </html>

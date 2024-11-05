@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height:100vh;
     margin: 0;
 }
 
@@ -81,9 +81,13 @@ button {
 
 #resetButton {
     margin-top: 0px; /* Añade un margen superior solo para el botón RESET */
-    background-color: #b71c1c; /* Opcional: diferente color para distinguir */
+    background-color: #d32f2f; /* Opcional: diferente color para distinguir */
 }
 
 button:hover {
+    background-color: #b71c1c;
+}
+
+#resetButton:hover{
     background-color: #b71c1c;
 }

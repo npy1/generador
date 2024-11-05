@@ -13,85 +13,72 @@
     <div class="container">
         <div class="main-container"></div>
         <div class="label-container" id="labelContainer">
-            <!-- Imagen de la etiqueta como fondo -->
-            <img src="imagen/WET GRIP/base.svg" alt="Etiqueta Base" class="label-image">
-            
-            <!-- Campos de texto superpuestos en las posiciones específicas -->
+            <img src="base.svg" alt="Etiqueta Base" class="label-image">
+
             <div class="info medida" id="infoMedida"></div>
             <div class="info rrc" id="infoRRC"></div>
             <div class="info wet-grip" id="infoWetGrip"></div>
             <div class="info noise-value" id="infoNoiseValue"></div>
             <div class="info pattern" id="infoPattern"></div>
 
-            <!-- Contenedor del código de barras EAN-13 -->
             <div class="info ean-code" id="infoEANCode">
                 <svg id="barcode" style="width: 200px; height: 60px;"></svg>
             </div>
 
-            <!-- Contenedor de la imagen de nivel de ruido para noise level = 1 -->
             <div class="noise-level-image" id="noiseLevelImageContainer">
-                <img src="imagen/lv1.png" alt="Nivel de Ruido 1" id="noiseLevelImage1">
+                <img src="noise lvl/lv1 noise.svg" alt="Nivel de Ruido 1" id="noiseLevelImage1">
             </div>
 
-            <!-- Contenedores de las imágenes adicionales para noise level = 2 y 3 -->
             <div class="noise-level-image" id="noiseLevelImageContainer2-1">
-                <img src="imagen/lv1.png" alt="Nivel de Ruido 2 Imagen 1" id="noiseLevelImage2-1">
+                <img src="noise lvl/lv1 noise.svg" alt="Nivel de Ruido 2 Imagen 1" id="noiseLevelImage2-1">
             </div>
             <div class="noise-level-image" id="noiseLevelImageContainer2-2">
-                <img src="imagen/lv2.png" alt="Nivel de Ruido 2 Imagen 2" id="noiseLevelImage2-2">
+                <img src="noise lvl/lv2 noise.svg" alt="Nivel de Ruido 2 Imagen 2" id="noiseLevelImage2-2">
             </div>
             <div class="noise-level-image" id="noiseLevelImageContainer3-1">
-                <img src="imagen/lv1.png" alt="Nivel de Ruido 3 Imagen 1" id="noiseLevelImage3-1">
+                <img src="noise lvl/lv1 noise.svg" alt="Nivel de Ruido 3 Imagen 1" id="noiseLevelImage3-1">
             </div>
             <div class="noise-level-image" id="noiseLevelImageContainer3-2">
-                <img src="imagen/lv2.png" alt="Nivel de Ruido 3 Imagen 2" id="noiseLevelImage3-2">
+                <img src="noise lvl/lv2 noise.svg" alt="Nivel de Ruido 3 Imagen 2" id="noiseLevelImage3-2">
             </div>
             <div class="noise-level-image" id="noiseLevelImageContainer3-3">
-                <img src="imagen/lv3.png" alt="Nivel de Ruido 3 Imagen 3" id="noiseLevelImage3-3">
+                <img src="noise lvl/lv3 noise.svg" alt="Nivel de Ruido 3 Imagen 3" id="noiseLevelImage3-3">
             </div>
 
-            <!-- Contenedor de imágenes según el valor de RRC -->
             <div class="rrc-image-container" id="rrcImageContainer">
-                <!-- Colocaremos las imágenes de RRC aquí -->
-                <img src="imagen/RRC/A.png" alt="RRC A" id="rrcImageA" style="display: none;">
-                <img src="imagen/RRC/B.png" alt="RRC B" id="rrcImageB" style="display: none;">
-                <img src="imagen/RRC/C.png" alt="RRC C" id="rrcImageC" style="display: none;">
-                <img src="imagen/RRC/D.png" alt="RRC D" id="rrcImageD" style="display: none;">
-                <img src="imagen/RRC/E.png" alt="RRC E" id="rrcImageE" style="display: none;">
-                <img src="imagen/RRC/F.png" alt="RRC F" id="rrcImageF" style="display: none;">
-                <img src="imagen/RRC/G.png" alt="RRC G" id="rrcImageG" style="display: none;">
+                <img src="imagen/RRC/A.svg" alt="RRC A" id="rrcImageA" style="display: none;">
+                <img src="imagen/RRC/B.svg" alt="RRC B" id="rrcImageB" style="display: none;">
+                <img src="imagen/RRC/C.svg" alt="RRC C" id="rrcImageC" style="display: none;">
+                <img src="imagen/RRC/D.svg" alt="RRC D" id="rrcImageD" style="display: none;">
+                <img src="imagen/RRC/E.svg" alt="RRC E" id="rrcImageE" style="display: none;">
+                <img src="imagen/RRC/F.svg" alt="RRC F" id="rrcImageF" style="display: none;">
+                <img src="imagen/RRC/G.svg" alt="RRC G" id="rrcImageG" style="display: none;">
             </div>
 
-            <!-- Contenedor de imágenes según el valor de Wet Grip -->
             <div class="wetgrip-image-container" id="wetGripImageContainer">
-                <img src="imagen/WET GRIP/A.png" alt="Wet Grip A" id="wetGripImageA" style="display: none;">
-                <img src="imagen/WET GRIP/B.png" alt="Wet Grip B" id="wetGripImageB" style="display: none;">
-                <img src="imagen/WET GRIP/C.png" alt="Wet Grip C" id="wetGripImageC" style="display: none;">
-                <img src="imagen/WET GRIP/D.png" alt="Wet Grip D" id="wetGripImageD" style="display: none;">
-                <img src="imagen/WET GRIP/E.png" alt="Wet Grip E" id="wetGripImageE" style="display: none;">
-                <img src="imagen/WET GRIP/F.png" alt="Wet Grip F" id="wetGripImageF" style="display: none;">
-                <img src="imagen/WET GRIP/G.png" alt="Wet Grip G" id="wetGripImageG" style="display: none;">
+                <img src="imagen/WET GRIP/A.svg" alt="Wet Grip A" id="wetGripImageA" style="display: none;">
+                <img src="imagen/WET GRIP/B.svg" alt="Wet Grip B" id="wetGripImageB" style="display: none;">
+                <img src="imagen/WET GRIP/C.svg" alt="Wet Grip C" id="wetGripImageC" style="display: none;">
+                <img src="imagen/WET GRIP/D.svg" alt="Wet Grip D" id="wetGripImageD" style="display: none;">
+                <img src="imagen/WET GRIP/E.svg" alt="Wet Grip E" id="wetGripImageE" style="display: none;">
+                <img src="imagen/WET GRIP/F.svg" alt="Wet Grip F" id="wetGripImageF" style="display: none;">
+                <img src="imagen/WET GRIP/G.svg" alt="Wet Grip G" id="wetGripImageG" style="display: none;">
             </div>
         </div>
     </div>
 
-     <!-- Contenedor de botones debajo de la etiqueta -->
-     <div class="button-container">
+    <div class="button-container">
         <button id="downloadPdfButton">Descargar PDF</button>
         <button id="backToHomeButton">Volver a la página principal</button>
     </div>
 
-
     <script>
-        // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
 
-        // Asignar los valores de los parámetros a los elementos correspondientes
         document.getElementById("infoMedida").textContent = params.get('medida');
         document.getElementById("infoPattern").textContent = params.get('pattern');
         document.getElementById("infoNoiseValue").textContent = params.get('noiseValue');
 
-        // Generar el código de barras usando JsBarcode en el contenedor SVG
         window.onload = function() {
             const eanCode = params.get('eanCode');
             if (eanCode && eanCode.length === 13) {
@@ -108,7 +95,6 @@
             }
         };
 
-        // Mostrar la imagen correspondiente según el valor de RRC
         const rrcValue = params.get('rrc');
         const rrcImages = {
             A: document.getElementById("rrcImageA"),
@@ -123,7 +109,6 @@
             rrcImages[rrcValue].style.display = "block";
         }
 
-        // Mostrar la imagen correspondiente según el valor de Wet Grip
         const wetGripValue = params.get('wetGrip');
         const wetGripImages = {
             A: document.getElementById("wetGripImageA"),
@@ -138,7 +123,6 @@
             wetGripImages[wetGripValue].style.display = "block";
         }
 
-        // Mostrar las imágenes correspondientes según el nivel de ruido
         const noiseLevel = params.get('noiseLevel');
         if (noiseLevel === "1") {
             document.getElementById("noiseLevelImageContainer").style.display = "block";
@@ -151,41 +135,40 @@
             document.getElementById("noiseLevelImageContainer3-3").style.display = "block";
         }
 
-        // Función para redirigir a la página principal
-document.getElementById("backToHomeButton").addEventListener("click", function() {
-    window.location.href = "index.html";
-});
+        document.getElementById("backToHomeButton").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
 
-        // Función para descargar la etiqueta como PDF en centímetros
         document.getElementById("downloadPdfButton").addEventListener("click", function() {
     const element = document.getElementById("labelContainer");
-
-    // Obtén los valores de PATTERN y MEDIDA
     const pattern = document.getElementById("infoPattern").textContent;
     const medida = document.getElementById("infoMedida").textContent;
-
-    // Construye el nombre del archivo
     const fileName = `${pattern}_${medida}.pdf`;
 
-    html2canvas(element, { scale: 6, useCORS: true }).then(canvas => { 
+    // Generar el canvas con una escala alta para mayor calidad
+    html2canvas(element, { scale: 8, useCORS: true }).then(canvas => {
         const imgData = canvas.toDataURL("image/png");
 
         const { jsPDF } = window.jspdf;
 
-        // Configura el tamaño del PDF en centímetros (9 cm x 32 cm)
+        // Configura el PDF en centímetros directamente
         const pdfWidthCm = 9;
         const pdfHeightCm = 32;
 
+        // Crea el PDF con unidades en centímetros y tamaño exacto
         const pdf = new jsPDF({
             orientation: "portrait",
             unit: "cm",
             format: [pdfWidthCm, pdfHeightCm]
         });
 
+        // Agrega la imagen al PDF en centímetros, manteniendo las dimensiones físicas
         pdf.addImage(imgData, "PNG", 0, 0, pdfWidthCm, pdfHeightCm);
         pdf.save(fileName);
     });
 });
+
+
 
     </script>
 </body>
