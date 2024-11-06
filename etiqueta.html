@@ -145,28 +145,28 @@
     const medida = document.getElementById("infoMedida").textContent;
     const fileName = `${pattern}_${medida}.pdf`;
 
-    // Generar el canvas con una escala alta para mayor calidad
-    html2canvas(element, { scale: 8, useCORS: true }).then(canvas => {
-        const imgData = canvas.toDataURL("image/png");
+    // Generar el canvas con una escala alta y calidad ligeramente superior
+    html2canvas(element, { scale: 5, useCORS: true }).then(canvas => { // Usa una escala de 5 para mejor calidad
+        const imgData = canvas.toDataURL("image/jpeg", 0.9); // Cambia a JPEG con calidad al 90%
 
         const { jsPDF } = window.jspdf;
 
-        // Configura el PDF en centímetros directamente
         const pdfWidthCm = 9;
         const pdfHeightCm = 32;
 
-        // Crea el PDF con unidades en centímetros y tamaño exacto
         const pdf = new jsPDF({
             orientation: "portrait",
             unit: "cm",
             format: [pdfWidthCm, pdfHeightCm]
         });
 
-        // Agrega la imagen al PDF en centímetros, manteniendo las dimensiones físicas
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidthCm, pdfHeightCm);
+        // Añadir la imagen al PDF con una compresión equilibrada para mantener la calidad
+        pdf.addImage(imgData, "JPEG", 0, 0, pdfWidthCm, pdfHeightCm, '', 'FAST'); // 'FAST' para reducir peso y mantener una buena calidad
         pdf.save(fileName);
     });
 });
+
+
 
 
 
