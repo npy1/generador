@@ -143,7 +143,7 @@
     const element = document.getElementById("labelContainer");
     const pattern = document.getElementById("infoPattern").textContent;
     const medida = document.getElementById("infoMedida").textContent;
-    const fileName = `${pattern}_${medida}.pdf`;
+    const fileName = `${medida}_${pattern}.pdf`;
 
     // Generar el canvas con una escala alta y calidad ligeramente superior
     html2canvas(element, { scale: 5, useCORS: true }).then(canvas => { // Usa una escala de 5 para mejor calidad
