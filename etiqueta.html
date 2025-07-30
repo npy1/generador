@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiqueta Generada</title>
+    <link rel="stylesheet" href="etiqueta.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="main-container"></div>
+        <div class="label-container" id="labelContainer">
+            <img src="base.svg" alt="Etiqueta Base" class="label-image">
+
+            <div class="info medida" id="infoMedida"></div>
+            <div class="info rrc" id="infoRRC"></div>
+            <div class="info wet-grip" id="infoWetGrip"></div>
+            <div class="info noise-value" id="infoNoiseValue"></div>
+            <div class="info pattern" id="infoPattern"></div>
+
+            <div class="info ean-code" id="infoEANCode">
+                <svg id="barcode" style="width: 200px; height: 60px;"></svg>
+            </div>
+
+            <div class="noise-level-image" id="noiseLevelImageContainer">
+                <img src="noise lvl/lv1 noise.svg" alt="Nivel de Ruido 1" id="noiseLevelImage1">
+            </div>
+
+            <div class="noise-level-image" id="noiseLevelImageContainer2-1">
+                <img src="noise lvl/lv1 noise.svg" alt="Nivel de Ruido 2 Imagen 1" id="noiseLevelImage2-1">
+            </div>
+            <div class="noise-level-image" id="noiseLevelImageContainer2-2">
+                <img src="noise lvl/lv2 noise.svg" alt="Nivel de Ruido 2 Imagen 2" id="noiseLevelImage2-2">
+            </div>
+            <div class="noise-level-image" id="noiseLevelImageContainer3-1">
+                <img src="noise lvl/lv1 noise.svg" alt="Nivel de Ruido 3 Imagen 1" id="noiseLevelImage3-1">
+            </div>
+            <div class="noise-level-image" id="noiseLevelImageContainer3-2">
+                <img src="noise lvl/lv2 noise.svg" alt="Nivel de Ruido 3 Imagen 2" id="noiseLevelImage3-2">
+            </div>
+            <div class="noise-level-image" id="noiseLevelImageContainer3-3">
+                <img src="noise lvl/lv3 noise.svg" alt="Nivel de Ruido 3 Imagen 3" id="noiseLevelImage3-3">
+            </div>
+
+            <div class="rrc-image-container" id="rrcImageContainer">
+                <img src="imagen/RRC/A.svg" alt="RRC A" id="rrcImageA" style="display: none;">
+                <img src="imagen/RRC/B.svg" alt="RRC B" id="rrcImageB" style="display: none;">
+                <img src="imagen/RRC/C.svg" alt="RRC C" id="rrcImageC" style="display: none;">
+                <img src="imagen/RRC/D.svg" alt="RRC D" id="rrcImageD" style="display: none;">
+                <img src="imagen/RRC/E.svg" alt="RRC E" id="rrcImageE" style="display: none;">
+                <img src="imagen/RRC/F.svg" alt="RRC F" id="rrcImageF" style="display: none;">
+                <img src="imagen/RRC/G.svg" alt="RRC G" id="rrcImageG" style="display: none;">
+            </div>
+
+            <div class="wetgrip-image-container" id="wetGripImageContainer">
+                <img src="imagen/WET GRIP/A.svg" alt="Wet Grip A" id="wetGripImageA" style="display: none;">
+                <img src="imagen/WET GRIP/B.svg" alt="Wet Grip B" id="wetGripImageB" style="display: none;">
+                <img src="imagen/WET GRIP/C.svg" alt="Wet Grip C" id="wetGripImageC" style="display: none;">
+                <img src="imagen/WET GRIP/D.svg" alt="Wet Grip D" id="wetGripImageD" style="display: none;">
+                <img src="imagen/WET GRIP/E.svg" alt="Wet Grip E" id="wetGripImageE" style="display: none;">
+                <img src="imagen/WET GRIP/F.svg" alt="Wet Grip F" id="wetGripImageF" style="display: none;">
+                <img src="imagen/WET GRIP/G.svg" alt="Wet Grip G" id="wetGripImageG" style="display: none;">
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button id="downloadPdfButton">Descargar PDF</button>
+        <button id="backToHomeButton">Volver a la página principal</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        document.getElementById("infoMedida").textContent = params.get('medida');
+        document.getElementById("infoPattern").textContent = params.get('pattern');
+        document.getElementById("infoNoiseValue").textContent = params.get('noiseValue');
+
+        window.onload = function() {
+            const eanCode = params.get('eanCode');
+            if (eanCode && eanCode.length === 13) {
+                JsBarcode("#barcode", eanCode, {
+                    format: "EAN13",
+                    displayValue: true,
+                    fontSize: 20,
+                    textMargin: 1,
+                    width: 2,
+                    height: 65
+                });
+            } else {
+                console.warn("El código EAN-13 no es válido.");
+            }
+        };
+
+        const rrcValue = params.get('rrc');
+        const rrcImages = {
+            A: document.getElementById("rrcImageA"),
+            B: document.getElementById("rrcImageB"),
+            C: document.getElementById("rrcImageC"),
+            D: document.getElementById("rrcImageD"),
+            E: document.getElementById("rrcImageE"),
+            F: document.getElementById("rrcImageF"),
+            G: document.getElementById("rrcImageG"),
+        };
+        if (rrcImages[rrcValue]) {
+            rrcImages[rrcValue].style.display = "block";
+        }
+
+        const wetGripValue = params.get('wetGrip');
+        const wetGripImages = {
+            A: document.getElementById("wetGripImageA"),
+            B: document.getElementById("wetGripImageB"),
+            C: document.getElementById("wetGripImageC"),
+            D: document.getElementById("wetGripImageD"),
+            E: document.getElementById("wetGripImageE"),
+            F: document.getElementById("wetGripImageF"),
+            G: document.getElementById("wetGripImageG"),
+        };
+        if (wetGripImages[wetGripValue]) {
+            wetGripImages[wetGripValue].style.display = "block";
+        }
+
+        const noiseLevel = params.get('noiseLevel');
+        if (noiseLevel === "1") {
+            document.getElementById("noiseLevelImageContainer").style.display = "block";
+        } else if (noiseLevel === "2") {
+            document.getElementById("noiseLevelImageContainer2-1").style.display = "block";
+            document.getElementById("noiseLevelImageContainer2-2").style.display = "block";
+        } else if (noiseLevel === "3") {
+            document.getElementById("noiseLevelImageContainer3-1").style.display = "block";
+            document.getElementById("noiseLevelImageContainer3-2").style.display = "block";
+            document.getElementById("noiseLevelImageContainer3-3").style.display = "block";
+        }
+
+        document.getElementById("backToHomeButton").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
+
+        document.getElementById("downloadPdfButton").addEventListener("click", function() {
+    const element = document.getElementById("labelContainer");
+    const pattern = document.getElementById("infoPattern").textContent;
+    const medida = document.getElementById("infoMedida").textContent;
+    const fileName = `${medida}_${pattern}.pdf`;
+
+    // Generar el canvas con una escala alta y calidad ligeramente superior
+    html2canvas(element, { scale: 5, useCORS: true }).then(canvas => { // Usa una escala de 5 para mejor calidad
+        const imgData = canvas.toDataURL("image/jpeg", 0.9); // Cambia a JPEG con calidad al 90%
+
+        const { jsPDF } = window.jspdf;
+
+        const pdfWidthCm = 9;
+        const pdfHeightCm = 32;
+
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "cm",
+            format: [pdfWidthCm, pdfHeightCm]
+        });
+
+        // Añadir la imagen al PDF con una compresión equilibrada para mantener la calidad
+        pdf.addImage(imgData, "JPEG", 0, 0, pdfWidthCm, pdfHeightCm, '', 'FAST'); // 'FAST' para reducir peso y mantener una buena calidad
+        pdf.save(fileName);
+    });
+});
+
+
+
+
+
+    </script>
+</body>
+</html>

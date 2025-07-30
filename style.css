@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    height: 20px;
+    margin-right: 25px;
+}
+
+h1 {
+    font-size: 15px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"], select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    appearance: none; /* Para quitar el estilo predeterminado de los select */
+}
+
+select {
+    background-color: #ffffff;
+}
+
+button {
+    padding: 10px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px; /* Añade un margen inferior para separar los botones */
+}
+
+#resetButton {
+    margin-top: 0px; /* Añade un margen superior solo para el botón RESET */
+    background-color: #d32f2f; /* Opcional: diferente color para distinguir */
+}
+
+button:hover {
+    background-color: #b71c1c;
+}
+
+#resetButton:hover{
+    background-color: #b71c1c;
+}
