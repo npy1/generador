@@ -79,21 +79,34 @@
         document.getElementById("infoPattern").textContent = params.get('pattern');
         document.getElementById("infoNoiseValue").textContent = params.get('noiseValue');
 
-        window.onload = function() {
-            const eanCode = params.get('eanCode');
-            if (eanCode && eanCode.length === 13) {
-                JsBarcode("#barcode", eanCode, {
-                    format: "EAN13",
-                    displayValue: true,
-                    fontSize: 20,
-                    textMargin: 1,
-                    width: 2,
-                    height: 65
-                });
-            } else {
-                console.warn("El código EAN-13 no es válido.");
-            }
-        };
+       window.onload = function () {
+    const eanCode = params.get('eanCode');
+    console.log("Código EAN recibido:", eanCode);
+
+    const barcodeElement = document.getElementById("barcode");
+
+    if (!barcodeElement) {
+        console.error("⚠️ No se encontró el elemento con id='barcode'");
+        return;
+    }
+
+    // Asegura que el SVG esté visible
+    barcodeElement.style.display = "block";
+
+    if (eanCode && eanCode.length === 13) {
+        JsBarcode("#barcode", eanCode, {
+            format: "EAN13",
+            displayValue: true,
+            fontSize: 20,
+            textMargin: 1,
+            width: 2,
+            height: 65
+        });
+        console.log("✅ Código de barras generado correctamente.");
+    } else {
+        console.warn("⚠️ El código EAN-13 no es válido o está incompleto.");
+    }
+};
 
         const rrcValue = params.get('rrc');
         const rrcImages = {
